@@ -1,13 +1,69 @@
 <script setup lang="ts">
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/outline'
 
-const navs = [
-  { label: 'home', to: ''},
-  { label: 'about', to: ''},
-  { label: 'shop', to: ''},
-  { label: 'products', to: ''},
-  { label: 'contact', to: ''},
-]
+type Navigation = {
+  label: string,
+  to: string,
+  isSelected: boolean
+}
+
+const corrousel = ref(0)
+
+const profileCurrent = reactive({
+  desc: "“I've tried countless cosmetics brands over the years, but none have delivered the flawless results I've experienced with Em cosmetics. From the silky textures to the vibrant colors, every product feels luxurious and delivers exceptional results. My skin has never looked better!”",
+  by: 'Michael Williams',
+  image: '/icons/profile/profile1.svg',
+})
+
+function nextProfile() {
+  corrousel.value += 1
+
+  if (corrousel.value === 1) {
+    profileCurrent.desc = "“This is wrong.”"
+    profileCurrent.by = 'Frey Daryl'
+    profileCurrent.image = '/icons/profile/profile2.svg'
+  }
+
+  if (corrousel.value === 2) {
+    profileCurrent.desc = "“I think every guy fantasizes about being in the industry at some point. I just made it a reality. Also, He is not just a performer; he is become a meme and a cultural icon. Hence, I try to stay positive and keep pushing forward, no matter what.”"
+    profileCurrent.by = 'Johnny Sins'
+    profileCurrent.image = '/icons/profile/profile3.svg'
+  }
+
+  if (corrousel.value === 3) {
+    profileCurrent.desc = "“I've tried countless cosmetics brands over the years, but none have delivered the flawless results I've experienced with Em cosmetics. From the silky textures to the vibrant colors, every product feels luxurious and delivers exceptional results. My skin has never looked better!”"
+    profileCurrent.by = 'Michael Williams'
+    profileCurrent.image = '/icons/profile/profile1.svg'
+    corrousel.value = 0
+   }
+}
+
+function prevProfile() {
+  if (corrousel.value === 0) return
+
+  if (corrousel.value === 1) {
+      profileCurrent.desc = "“I've tried countless cosmetics brands over the years, but none have delivered the flawless results I've experienced with Em cosmetics. From the silky textures to the vibrant colors, every product feels luxurious and delivers exceptional results. My skin has never looked better!”"
+      profileCurrent.by = 'Michael Williams'
+      profileCurrent.image = '/icons/profile/profile1.svg'
+      corrousel.value -= 1
+      
+  }
+
+  if (corrousel.value === 2) {
+    profileCurrent.desc = "“This is wrong.”"
+    profileCurrent.by = 'Frey Daryl'
+    profileCurrent.image = '/icons/profile/profile2.svg'
+    corrousel.value -= 1
+  }
+}
+
+const navs: Navigation[] = reactive([
+  { label: 'home', to: '#home', isSelected: false },
+  { label: 'about', to: '#about', isSelected: false },
+  { label: 'shop', to: '#shop', isSelected: false },
+  { label: 'products', to: '', isSelected: false },
+  { label: 'contact', to: '', isSelected: false },
+])
 
 const headerImages = [
   '/illustrations/headerImage1.svg',
@@ -21,16 +77,42 @@ const shopImages = [
   { label: 'Make-up products', image: '/illustrations/shops/makeup-products.svg' },
   { label: 'Soaps & Lotions', image: '/illustrations/shops/lotion-products.svg' },
 ]
+
+function selectNav(nav: Navigation) {
+  navs.forEach(nav => {
+    nav.isSelected = false
+  })
+  nav.isSelected = true
+}
+
+function initializeNavigation() {
+  navs[0].isSelected = true
+}
+
+initializeNavigation()
 </script>
 
+<style>
+@font-face {
+   font-family: myFirstFont;
+   src: url(sansation_light.woff);
+}
+</style>
+
 <template>
-  <div class="w-full h-full relative overflow-x-hidden overflow-y-auto">
-    <div class="w-full py-6 grid place-items-center border-b border-red-10">
+  <div class="w-full h-full relative overflow-x-hidden overflow-y-auto font-['Poppins']">
+    <div class="w-full py-6 grid place-items-center border-b border-red-10" id="home">
       <div class="max-w-7xl w-full justify-between flex items-center">
         <img src="/icons/logo.svg" alt="Logo">
 
         <div class="flex items-center space-x-12">
-          <a v-for="nav in navs" class="text-red-10 text-base outline-none capitalize">{{ nav.label }}</a>
+          <a 
+            v-for="nav in navs" 
+            class="text-base outline-none capitalize font-semibold cursor-pointer"
+            :class="[nav.isSelected ? 'text-red-10' : 'text-gray-0']"
+            :href="nav.to"
+            @click="selectNav(nav)"
+          >{{ nav.label }}</a>
         </div>
       </div>
     </div>
@@ -42,7 +124,7 @@ const shopImages = [
         </div>
 
         <div class="flex items-start justify-between w-full">
-          <div class="flex flex-col items-start space-y-0">
+          <div class="flex flex-col items-start space-y-0 font-['Playfair_Display']">
             <p class="text-2xl text-gray-0">Glow beyond limits with</p>
             <p class="text-6xl font-semibold italic text-red-10">EM Cosmetics.</p>
           </div>
@@ -64,10 +146,10 @@ const shopImages = [
       </div>
     </div>
 
-    <div class="w-full relative my-40">
+    <div class="w-full relative my-40" id="about">
       <div class="left-0 bg-gray-5 flex items-center py-20 px-80 max-w-[1700px] relative overflow-hidden">
         <div class="flex flex-col items-start space-y-10">
-          <p class="text-red-10 font-semibold italic text-4xl">About</p>
+          <p class="text-red-10 font-semibold italic text-4xl font-['Playfair_Display']">About</p>
 
           <p class="text-base text-black w-[520px]">
             <span class="font-semibold text-red-10">EM Cosmetics</span>
@@ -83,9 +165,9 @@ const shopImages = [
       </div>
     </div>
 
-    <div class="w-full py-16 grid place-items-center">
+    <div class="w-full py-16 grid place-items-center" id="shop">
       <div class="max-w-7xl w-full flex flex-col items-start space-y-14">
-        <p class="text-red-10 text-4xl font-semibold italic">Shop by categories</p>
+        <p class="text-red-10 text-4xl font-semibold italic font-['Playfair_Display']">Shop by categories</p>
 
         <div class="flex items-center space-x-4">
           <div v-for="product in shopImages" class="relative overflow-hidden grid place-items-center">
@@ -107,36 +189,45 @@ const shopImages = [
         <img src="/illustrations/peopleImage.svg" alt="About Image" class="left-0" />
 
         <div class="flex flex-col items-start space-y-28 w-[800px] px-12 py-16">
-          <p class="text-white font-semibold italic text-4xl">What people say</p>
+          <p class="text-white font-medium italic text-4xl font-['Playfair_Display']">What people say</p>
 
           <div class="w-full flex flex-col items-center space-y-10">
             <img src="/icons/comma.svg" alt="">
 
             <div class="flex items-center justify-between space-x-20">
-              <button class="p-3 rounded-full bg-white">
+              <button class="p-3 rounded-full bg-white" @click="prevProfile">
                 <ChevronLeftIcon class="stroke-red-10 h-5 w-5" />
               </button>
 
               <p class="w-[450px] h-32 text-center text-base text-white">
-                “I've tried countless cosmetics brands over the years, but none have delivered the flawless results I've experienced with Em cosmetics. From the silky textures to the vibrant colors, every product feels luxurious and delivers exceptional results. My skin has never looked better!”
+                {{ profileCurrent.desc }}
               </p>
 
-              <button class="p-3 rounded-full bg-white">
+              <button class="p-3 rounded-full bg-white" @click="nextProfile">
                 <ChevronRightIcon class="stroke-red-10 h-5 w-5" />
               </button>
             </div>
 
             <div class="space-y-10 flex flex-col items-center">
               <div class="space-y-6 flex flex-col items-center">
-                <div class="w-12 h-12 rounded-full bg-white" />
+                <img :src="profileCurrent.image" class="w-12 h-12 rounded-full overflow-hidden" />
 
-                <p class="text-white text-[15px] font-medium">Michael Williams</p>
+                <p class="text-white text-[15px] font-medium">{{ profileCurrent.by }}</p>
               </div>
 
               <div class="flex items-center space-x-3">
-                <span class="w-2 h-2 bg-white rounded-full" />
-                <span class="w-2 h-2 bg-white rounded-full" />
-                <span class="w-2 h-2 bg-white rounded-full" />
+                <span 
+                  class="w-2 h-2 bg-white rounded-full" 
+                  :class="[corrousel === 0 ? '' : 'opacity-40']"
+                />
+                <span 
+                  class="w-2 h-2 bg-white rounded-full"
+                  :class="[corrousel === 1 ? '' : 'opacity-40']"
+                />
+                <span 
+                  class="w-2 h-2 bg-white rounded-full" 
+                  :class="[corrousel === 2 ? '' : 'opacity-40']"
+                />
               </div>
             </div>
           </div>
@@ -148,7 +239,7 @@ const shopImages = [
       <div class="max-w-7xl w-full flex flex-col items-center space-y-14">
         <img src="/illustrations/contact-image.svg" alt="Contact Image">
 
-        <p class="text-center text-red-10 text-5xl font-medium italic">
+        <p class="text-center text-red-10 text-5xl font-semibold italic font-['Playfair_Display']">
           Be a Beauty Insider: <br />
           Sign Up for Membership
         </p>
