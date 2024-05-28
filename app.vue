@@ -1,9 +1,9 @@
 <script setup lang="ts">
 useHead({
   titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} · EM Cosmetic` : 'EM Cosmetic'
+    return titleChunk ? `${titleChunk} · EM Cosmetics` : 'EM Cosmetics'
   },
-  link: [{ rel: 'icon', type: "image/x-icon", href: '/icons/favicon.png' }]
+  link: [{ rel: 'icon', type: "image/x-icon", href: '/icons/favicon.ico' }]
 })
 </script>
 
