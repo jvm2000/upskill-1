@@ -25,13 +25,13 @@ function nextProfile() {
   }
 
   if (corrousel.value === 2) {
-    profileCurrent.desc = "“I think every guy fantasizes about being in the industry at some point. I just made it a reality. Also, He is not just a performer; he is become a meme and a cultural icon. Hence, I try to stay positive and keep pushing forward, no matter what.”"
+    profileCurrent.desc = "“Em Cosmetics delivers high-quality makeup with rich pigments and smooth application, perfect for achieving a flawless look every time.”"
     profileCurrent.by = 'Amanda Wonders'
     profileCurrent.image = 'https://as2.ftcdn.net/v2/jpg/02/18/93/97/1000_F_218939757_YqHgeD3BAANU87y2Kc10Y40HNVgDv5rK.jpg'
   }
 
   if (corrousel.value === 3) {
-    profileCurrent.desc = "“Em Cosmetics delivers high-quality makeup with rich pigments and smooth application, perfect for achieving a flawless look every time.”"
+    profileCurrent.desc = "“I've tried countless cosmetics brands over the years, but none have delivered the flawless results I've experienced with Em cosmetics. From the silky textures to the vibrant colors, every product feels luxurious and delivers exceptional results. My skin has never looked better!”"
     profileCurrent.by = 'Michael Williams'
     profileCurrent.image = '/icons/profile/profile1.svg'
     corrousel.value = 0
@@ -40,7 +40,7 @@ function nextProfile() {
 
 function prevProfile() {
   if (corrousel.value === 0) {
-    profileCurrent.desc = "“I think every guy fantasizes about being in the industry at some point. I just made it a reality. Also, He is not just a performer; he is become a meme and a cultural icon. Hence, I try to stay positive and keep pushing forward, no matter what.”"
+    profileCurrent.desc = "“Em Cosmetics delivers high-quality makeup with rich pigments and smooth application, perfect for achieving a flawless look every time.”"
     profileCurrent.by = 'Amanda Wonders'
     profileCurrent.image = 'https://as2.ftcdn.net/v2/jpg/02/18/93/97/1000_F_218939757_YqHgeD3BAANU87y2Kc10Y40HNVgDv5rK.jpg'
     corrousel.value = 3
@@ -62,7 +62,7 @@ function prevProfile() {
   }
 
   if (corrousel.value === 3) {
-    profileCurrent.desc = "“I think every guy fantasizes about being in the industry at some point. I just made it a reality. Also, He is not just a performer; he is become a meme and a cultural icon. Hence, I try to stay positive and keep pushing forward, no matter what.”"
+    profileCurrent.desc = "“Em Cosmetics delivers high-quality makeup with rich pigments and smooth application, perfect for achieving a flawless look every time.”"
     profileCurrent.by = 'Amanda Wonders'
     profileCurrent.image = 'https://as2.ftcdn.net/v2/jpg/02/18/93/97/1000_F_218939757_YqHgeD3BAANU87y2Kc10Y40HNVgDv5rK.jpg'
     corrousel.value -= 1
