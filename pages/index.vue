@@ -39,7 +39,12 @@ function nextProfile() {
 }
 
 function prevProfile() {
-  if (corrousel.value === 0) return
+  if (corrousel.value === 0) {
+    profileCurrent.desc = "“I think every guy fantasizes about being in the industry at some point. I just made it a reality. Also, He is not just a performer; he is become a meme and a cultural icon. Hence, I try to stay positive and keep pushing forward, no matter what.”"
+    profileCurrent.by = 'Amanda Wonders'
+    profileCurrent.image = 'https://as2.ftcdn.net/v2/jpg/02/18/93/97/1000_F_218939757_YqHgeD3BAANU87y2Kc10Y40HNVgDv5rK.jpg'
+    corrousel.value = 3
+  }
 
   if (corrousel.value === 1) {
       profileCurrent.desc = "“I've tried countless cosmetics brands over the years, but none have delivered the flawless results I've experienced with Em cosmetics. From the silky textures to the vibrant colors, every product feels luxurious and delivers exceptional results. My skin has never looked better!”"
@@ -50,9 +55,16 @@ function prevProfile() {
   }
 
   if (corrousel.value === 2) {
-    profileCurrent.desc = "“This is wrong.”"
-    profileCurrent.by = 'Frey Daryl'
-    profileCurrent.image = '/icons/profile/profile2.svg'
+    profileCurrent.desc = "“Em Cosmetics offers beautifully crafted makeup products that enhance natural beauty with innovative formulas and stunning packaging.”"
+    profileCurrent.by = 'Anthony Stark'
+    profileCurrent.image = 'https://as1.ftcdn.net/v2/jpg/01/97/11/64/1000_F_197116416_hpfTtXSoJMvMqU99n6hGP4xX0ejYa4M7.jpg'
+    corrousel.value -= 1
+  }
+
+  if (corrousel.value === 3) {
+    profileCurrent.desc = "“I think every guy fantasizes about being in the industry at some point. I just made it a reality. Also, He is not just a performer; he is become a meme and a cultural icon. Hence, I try to stay positive and keep pushing forward, no matter what.”"
+    profileCurrent.by = 'Amanda Wonders'
+    profileCurrent.image = 'https://as2.ftcdn.net/v2/jpg/02/18/93/97/1000_F_218939757_YqHgeD3BAANU87y2Kc10Y40HNVgDv5rK.jpg'
     corrousel.value -= 1
   }
 }
